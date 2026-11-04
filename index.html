@@ -63,30 +63,14 @@
   .g3{grid-template-columns:repeat(3,1fr)}
   .g4{grid-template-columns:repeat(4,1fr)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:.35s;position:relative;overflow:hidden}
-  .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(168,85,247,.16),transparent 45%);opacity:0;transition:.35s}
+  .card::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(168,85,247,.16),transparent 45%);opacity:0;transition:.35s}
+  .card>*{position:relative;z-index:1}
   .card:hover{border-color:rgba(168,85,247,.45);transform:translateY(-4px)}
   .card:hover::before{opacity:1}
   .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(168,85,247,.12));border:1px solid rgba(168,85,247,.35);margin-bottom:16px}
   .ic svg{width:22px;height:22px;stroke:#e9d5ff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
   .card h3{font-size:18px;margin-bottom:6px}
   .card p{color:var(--muted);font-size:14.5px}
-
-  /* portfolio */
-  .work{padding:0}
-  .work .shot{height:220px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-  .work .bar{position:absolute;top:0;left:0;right:0;height:26px;background:rgba(0,0,0,.45);display:flex;gap:5px;align-items:center;padding:0 10px;direction:ltr}
-  .work .bar i{width:7px;height:7px;border-radius:50%;background:#3f3f46}
-  .work .mock{position:absolute;inset:26px 0 0;padding:18px}
-  .mock .l1{height:10px;width:55%;border-radius:6px;background:rgba(255,255,255,.75);margin-bottom:8px}
-  .mock .l2{height:7px;width:75%;border-radius:6px;background:rgba(255,255,255,.25);margin-bottom:5px}
-  .mock .l3{height:7px;width:40%;border-radius:6px;background:rgba(255,255,255,.25)}
-  .mock .pill{display:inline-block;margin-top:14px;height:18px;width:70px;border-radius:9px;background:#fff;opacity:.9}
-  .mock .tiles{position:absolute;bottom:14px;right:18px;left:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .mock .tiles span{height:56px;border-radius:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
-  .w1 .shot{background:radial-gradient(circle at 80% 20%,#9d4edd,transparent 55%),linear-gradient(160deg,#1a0b2e,#0b0b10)}
-  .w2 .shot{background:radial-gradient(circle at 20% 30%,#6d28d9,transparent 55%),linear-gradient(200deg,#120a24,#050507)}
-  .w3 .shot{background:radial-gradient(circle at 50% 110%,#c084fc,transparent 55%),linear-gradient(180deg,#0c0c12,#1b0f30)}
-  .work .meta{padding:20px 22px}
   .tag{font-size:12px;color:var(--p3);border:1px solid rgba(168,85,247,.35);border-radius:999px;padding:1px 10px;margin-inline-start:6px}
 
   /* process */
@@ -100,7 +84,7 @@
   input:focus,textarea:focus,select:focus{border-color:var(--p1);box-shadow:0 0 0 4px rgba(168,85,247,.15)}
   textarea{min-height:110px;resize:vertical}
   select option{background:#111}
-  .ok{display:none;color:#d8b4fe;font-size:14px}
+  .ok{display:none;color:#e9d5ff;font-size:14px;background:rgba(124,58,237,.12);border:1px solid rgba(168,85,247,.35);border-radius:14px;padding:12px 14px;line-height:1.9}.ok pre{white-space:pre-wrap;font-family:inherit;background:rgba(0,0,0,.3);border-radius:10px;padding:8px 10px;margin:8px 0;color:#fff}.ok button{font-family:inherit;background:none;border:1px solid rgba(168,85,247,.6);color:#fff;border-radius:999px;padding:4px 14px;cursor:pointer}
   .info{margin-top:22px;display:grid;gap:8px;color:#d4d4d8;font-size:15px}
   .info span{color:var(--muted);margin-inline-end:8px}
   footer{padding:30px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
@@ -126,7 +110,7 @@
   }
   @media (max-width:860px) and (min-width:560px){.g4{grid-template-columns:1fr 1fr}}
 
-  .project{padding:0}
+  .project{padding:0;display:block;cursor:pointer}
   .project .shot{display:block;position:relative;border-bottom:1px solid var(--line);overflow:hidden}
   .project .bar{height:30px;background:rgba(0,0,0,.55);display:flex;gap:6px;align-items:center;padding:0 12px;direction:ltr}
   .project .bar i{width:8px;height:8px;border-radius:50%;background:#3f3f46}
@@ -174,7 +158,6 @@
 </header>
 
 <main>
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="wrap">
       <div class="hero-txt">
@@ -197,7 +180,6 @@
     <div class="scroll-hint" id="hint"><div class="mouse"></div>اسکرول کنید</div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="wrap">
       <div class="head rv">
@@ -216,7 +198,6 @@
     </div>
   </section>
 
-  <!-- WORK -->
   <section id="work">
     <div class="wrap">
       <div class="head rv">
@@ -224,25 +205,24 @@
         <h2>سایتی که ساخته‌ایم را از نزدیک ببینید</h2>
         <p>روی دکمه بزنید و سایت را زنده، روی گوشی یا کامپیوتر خودتان بگردید.</p>
       </div>
-      <div class="card project rv">
-        <a class="shot" href="https://atrenan.com" target="_blank" rel="noopener">
+      <a class="card project rv" href="https://atrenan.com">
+        <div class="shot">
           <div class="bar"><i></i><i></i><i></i><span>atrenan.com</span></div>
-          <div class="pic"><!-- SCREENSHOT: replace this div's content with <img src="atrenan.jpg" alt="سایت عطرنان"> -->
+          <div class="pic">
             <div class="ph"><b>عطرنان</b><small>Atrenan</small><em></em></div>
           </div>
-        </a>
+        </div>
         <div class="meta">
           <div>
             <h3>عطرنان <span class="tag">سایت معرفی محصولات</span><span class="tag">دو زبانه</span></h3>
             <p>کاتالوگ آنلاین محصولات یک مجموعه‌ی تولیدی، با طراحی مشکی و طلایی، نسخه‌ی فارسی و انگلیسی و اسلایدر لمسی محصولات.</p>
           </div>
-          <a class="btn fill" href="https://atrenan.com" target="_blank" rel="noopener">مشاهده‌ی سایت ↗</a>
+          <span class="btn fill">مشاهده‌ی سایت ↗</span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
-  <!-- PROCESS -->
   <section id="process">
     <div class="wrap">
       <div class="head rv">
@@ -258,7 +238,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="wrap contact">
       <div class="card big rv">
@@ -273,12 +252,12 @@
       </div>
       <div class="card rv">
         <form id="form">
-          <input required placeholder="نام شما">
-          <input required placeholder="شماره تماس" inputmode="tel">
-          <select><option>نوع سایت</option><option>سایت شرکتی</option><option>فروشگاه اینترنتی</option><option>منوی دیجیتال</option><option>هنوز نمی‌دانم</option></select>
-          <textarea placeholder="چند خط درباره‌ی کسب‌وکارتان"></textarea>
-          <button class="btn fill" type="submit" style="justify-content:center">ارسال درخواست</button>
-          <p class="ok" id="ok">ممنون! برای پاسخ سریع‌تر به اینستاگرام <b dir="ltr">@tyr_ruxrs</b> پیام بدهید یا با ۰۹۰۵۲۳۶۱۵۲۳ تماس بگیرید.</p>
+          <input required name="name" placeholder="نام شما">
+          <input required name="phone" placeholder="شماره تماس" inputmode="tel" dir="ltr" style="text-align:right">
+          <select name="type"><option value="">نوع سایت</option><option>سایت شرکتی</option><option>فروشگاه اینترنتی</option><option>منوی دیجیتال</option><option>هنوز نمی‌دانم</option></select>
+          <textarea name="msg" placeholder="چند خط درباره‌ی کسب‌وکارتان"></textarea>
+          <button class="btn fill" type="submit" style="justify-content:center">ارسال درخواست با پیامک</button>
+          <div class="ok" id="ok"></div>
         </form>
       </div>
     </div>
@@ -286,7 +265,7 @@
 </main>
 
 <footer>
-  <div class="wrap"><span>© ۱۴۰۵ وب بازدید از نمونه‌ها</span><span>ساخته‌شده با ♥ در انزلی</span></div>
+  <div class="wrap"><span>© ۱۴۰۵ وب بازدید از نمونه‌ها</span><span>ساخته‌شده با ♥ در انزلی · نسخه ۷</span></div>
 </footer>
 
 <script>
@@ -301,7 +280,25 @@ document.querySelectorAll('.links a').forEach(a=>a.onclick=()=>hdr.classList.rem
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.hero')?i*0.12:0)+'s';io.observe(el)});
 document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
-document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block'});
+const ADMIN_PHONE='09052361523';
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target,ok=document.getElementById('ok');
+  const v=k=>(f.elements[k].value||'').trim();
+  const phone=v('phone').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[^\d+]/g,'');
+  if(phone.length<10){ok.style.display='block';ok.textContent='لطفاً شماره تماس را درست وارد کنید.';f.elements.phone.focus();return}
+  const text=['درخواست طراحی سایت','نام: '+v('name'),'شماره: '+phone,'نوع سایت: '+(v('type')||'مشخص نشده'),v('msg')?'توضیحات: '+v('msg'):''].filter(Boolean).join('\n');
+  const mobileDev=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  ok.style.display='block';
+  if(mobileDev){
+    ok.innerHTML='برنامه‌ی پیامک باز شد؛ <b>دکمه‌ی ارسال پیامک را بزنید</b> تا درخواستتان برسد. ممنون!';
+    location.href='sms:'+ADMIN_PHONE+'?&body='+encodeURIComponent(text);
+  }else{
+    ok.innerHTML='روی کامپیوتر پیامک ارسال نمی‌شود. این متن را برای شماره‌ی <b dir="ltr">0905 236 1523</b> پیامک کنید یا در اینستاگرام <b dir="ltr">@tyr_ruxrs</b> بفرستید:<pre></pre><button type="button">کپی متن</button>';
+    ok.querySelector('pre').textContent=text;
+    ok.querySelector('button').onclick=async ev=>{try{await navigator.clipboard.writeText(text);ev.target.textContent='کپی شد ✓'}catch(_){ev.target.textContent='متن را دستی کپی کنید'}};
+  }
+});
 const secs=[...document.querySelectorAll('main section')],navs=[...document.querySelectorAll('.links a')];
 addEventListener('scroll',()=>{
   hdr.classList.toggle('solid',scrollY>30);
@@ -318,8 +315,6 @@ let mode='float',formAt=0,glow=0,lastAct=performance.now(),cur=0,shapeAt=0;
 const IDLE=2600,HOLD=5000;
 const COL=['#ffffff','#c084fc','#8b5cf6','#f0abfc'];
 
-/* ---------- helpers ---------- */
-/* pick exactly n points, weighted, sorted top→bottom for smooth morphs */
 function finalize(cand,n,spin=0,tilt=0,roll=0){
   let sum=0;for(const c of cand)sum+=c.w??1;
   const k=n/sum,pick=[];
@@ -332,7 +327,6 @@ function finalize(cand,n,spin=0,tilt=0,roll=0){
   return {P,spin,tilt,roll};
 }
 
-/* ---------- the shapes ---------- */
 function makeGlobe(n){
   const c=[],R=.68;
   for(let la=-75;la<=75;la+=15){const p=la*Math.PI/180,r=Math.cos(p)*R,y=Math.sin(p)*R,k=Math.round(r*420);
@@ -350,17 +344,15 @@ function makeDNA(n){
     for(let i=0;i<110;i++){const u=i/109*2-1;c.push({x:Math.cos(t)*R*u,y:y+(Math.random()-.5)*.006,z:Math.sin(t)*R*u,a:.8,c:2,w:1})}}
   return finalize(c,n,.7,.15,.3);
 }
-
 function makeCube(n){
   const c=[],h=.5,V=[];
   for(const x of[-h,h])for(const y of[-h,h])for(const z of[-h,h])V.push([x,y,z]);
   const E=[];for(let i=0;i<8;i++)for(let j=i+1;j<8;j++){let d=0;for(let k=0;k<3;k++)if(V[i][k]!==V[j][k])d++;if(d===1)E.push([V[i],V[j]])}
   for(const[p,q]of E)for(let i=0;i<700;i++){const u=Math.random(),j=()=>(Math.random()-.5)*.012;
     c.push({x:p[0]+(q[0]-p[0])*u+j(),y:p[1]+(q[1]-p[1])*u+j(),z:p[2]+(q[2]-p[2])*u+j(),a:.95,c:Math.random()<.25?1:0,w:1})}
-  const S=finalize(c,n,.55,.42,0);S.ortho=true;return S;   // no perspective, no depth shading → direction is ambiguous
+  const S=finalize(c,n,.55,.42,0);S.ortho=true;return S;
 }
 
-/* ---------- layout & particles ---------- */
 function layout(){
   if(mobile){box.r=Math.min(W*.46,H*.24);box.cx=W*.5;box.cy=H*.29}
   else{box.r=Math.min(H*.4,W*.25);box.cx=W*.27;box.cy=H*.53}
@@ -393,19 +385,16 @@ function act(){lastAct=performance.now();if(mode==='form')scatter()}
 let lmx=0,lmy=0;addEventListener('mousemove',e=>{if(Math.abs(e.clientX-lmx)+Math.abs(e.clientY-lmy)>6)act();lmx=e.clientX;lmy=e.clientY},{passive:true});
 let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(Math.abs(innerWidth-W)>40||Math.abs(innerHeight-H)>140)init()},200)});
 
-/* compute this frame's target for every shape particle */
 function targets(t){
   const S=SH[cur],P=S.P,ang=t*S.spin,ca=Math.cos(ang),sa=Math.sin(ang),ct=Math.cos(S.tilt),st=Math.sin(S.tilt),cr=Math.cos(S.roll),sr=Math.sin(S.roll);
-  const flick=t*14;
   for(let i=0;i<nShape;i++){
     const p=parts[i],o=i*5;let x=P[o],y=P[o+1],z=P[o+2],a=P[o+3];const c=P[o+4];
     if(S.spin){
-      let x1=x*ca+z*sa,z1=-x*sa+z*ca;               // spin around Y
-      let y1=y*ct-z1*st,z2=y*st+z1*ct;        // tilt toward viewer
-      const x2=x1*cr-y1*sr,y2=x1*sr+y1*cr;           // roll
+      let x1=x*ca+z*sa,z1=-x*sa+z*ca;
+      let y1=y*ct-z1*st,z2=y*st+z1*ct;
+      const x2=x1*cr-y1*sr,y2=x1*sr+y1*cr;
       if(S.ortho){x=x2;y=y2}else{const f=2.6/(2.6+z2);x=x2*f;y=y2*f;a*=.35+.65*(1-z2)/2}
     }
-    if(c===3){x+=(Math.sin(flick+i)*.012);y+=Math.abs(Math.sin(flick*.7+i*1.3))*.03;a*=.6+.4*Math.sin(flick+i*.7)}
     p.tx=box.cx+x*box.r;p.ty=box.cy+y*box.r;p.ta=a;p.tc=c;
   }
 }
@@ -467,7 +456,6 @@ function frame(now){
   ctx.globalAlpha=1;
   requestAnimationFrame(frame);
 }
-/* debug hook */
 init();requestAnimationFrame(frame);
 })();
 </script>
